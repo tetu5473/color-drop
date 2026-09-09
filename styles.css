@@ -1,0 +1,53 @@
+/* color-drop/styles.css【修正】キャンディの精と明るい庭を描き、画面高に合わせて操作領域を確保します。 */
+:root{font-family:ui-rounded,'Hiragino Maru Gothic ProN','Hiragino Kaku Gothic ProN',system-ui,sans-serif;color:#59466a;background:#fff5e7;font-synthesis:none;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;min-height:100dvh;background:radial-gradient(circle at 15% 16%,#fff 0 4px,transparent 5px),radial-gradient(circle at 78% 62%,#fff 0 6px,transparent 7px),linear-gradient(155deg,#ffe8e9,#fff8de 48%,#dff3e6);background-size:95px 95px,150px 150px,100% 100%;}h1,h2,p{margin:0}button{font:inherit;font-weight:700;color:#665077;border:2px solid #d5bfd9;border-radius:15px;background:#fffdf8;padding:10px 14px;cursor:pointer;box-shadow:0 3px 0 #cbb3ce;transition:transform .12s,background .12s}button:hover:not(:disabled){background:#fff0f4;transform:translateY(-1px)}button:active:not(:disabled){transform:translateY(2px);box-shadow:none}button:disabled{opacity:.45;cursor:default}button:focus-visible{outline:3px solid #8c60b5;outline-offset:3px}[hidden]{display:none!important}
+/* 見出しと音の切り替えは常に上部に置きます。 */
+.game-shell{max-width:760px;padding:18px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.eyebrow{font-size:10px;letter-spacing:.17em;color:#a77489;font-weight:800;margin-bottom:3px}h1{font-size:29px;color:#ac5681;letter-spacing:.025em;text-shadow:0 2px #fff}h1 span{display:block;font-size:12px;color:#90768c;margin-top:3px;font-weight:500}.header-actions{display:flex;gap:8px}.header-actions button{font-size:12px;padding:8px 11px}#sound[aria-pressed=true]{background:#f9e5f1}
+/* 盤面は淡いラベンダーの格子。四角いブロックの背景は使わずSVGそのものを表示します。 */
+.play-layout{display:grid;grid-template-columns:minmax(200px,min(340px,calc((100dvh - 238px)/2))) minmax(190px,1fr);gap:22px;justify-content:center}.board-section{min-width:0}.board-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-bottom:8px;color:#987188}.board-top strong{color:#be4b80}#phase-label{font-size:9px;letter-spacing:.08em;color:#638c7b;font-weight:800}.board-wrap{position:relative;background:#fffcf9;border:3px solid #ddbad7;border-radius:22px;padding:7px;box-shadow:0 6px 0 #c8a5c9,0 15px 35px #ae719420}#board{display:grid;grid-template-columns:repeat(6,1fr);aspect-ratio:1/2;gap:0;background:linear-gradient(#ebe6fb,#f4effc);border-radius:13px;overflow:hidden}.cell{position:relative;display:grid;place-items:center;min-width:0;min-height:0;border-right:1px solid #ffffff6b;border-bottom:1px solid #ffffff6b}.cell:nth-child(-n+6){border-top:2px dashed #c69abd}.block{display:block;position:relative;width:100%;height:100%;min-height:0;transform-origin:50% 80%}.block svg{display:block;width:100%;height:100%;overflow:visible}.ghost{opacity:.2;filter:saturate(.5)}.active-block{filter:drop-shadow(0 0 2px #fff)}.clearing .block{animation:pop .36s ease-in forwards}#announcement{min-height:30px;font-size:12px;color:#aa5384;text-align:center;padding-top:10px;font-weight:700}
+/* 得点・予告・操作説明を軽い紙のカードにまとめます。 */
+.sidebar{display:flex;flex-direction:column;gap:10px}.sidebar section{border:2px solid #e7ccde;border-radius:19px;padding:14px;background:#fffdf8d9;box-shadow:0 4px 0 #dcc2d344}.sidebar h2{font-size:11px;letter-spacing:.12em;color:#a87594}.sidebar h2 span{font-weight:400;letter-spacing:0;margin-left:7px;font-size:11px;color:#9b829c}#score{font-size:42px;line-height:1.25;color:#a85382;font-weight:850;letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin:4px 0 10px}.score-bottom{display:flex;justify-content:space-between;border-top:1px dashed #dfc4d5;padding-top:9px;font-size:11px}.score-bottom strong{font-size:16px;margin-left:5px;color:#8664a4}#next{display:flex;justify-content:center;gap:4px;min-height:68px;padding-top:6px}#next .block{width:58px;height:58px}.control-card p{display:flex;align-items:center;gap:4px;font-size:11px;margin-top:6px}.control-card p span{margin-left:auto}kbd{border:1px solid #e4cddc;border-radius:5px;min-width:23px;padding:2px 4px;font:10px ui-monospace,monospace;text-align:center;background:#fff}.rule-note,.music-note{font-size:11px;line-height:1.6;color:#917a95;padding:0 5px}.music-note{color:#9d5e87}.music-note span{font-size:10px;color:#a0889b}
+/* 開始・休止・リセット確認はゲーム内のカードで表示します。 */
+#overlay{position:absolute;inset:7px;display:grid;place-items:center;background:#fff8eeef;backdrop-filter:blur(4px);border-radius:14px;text-align:center;padding:12px}.overlay-card{width:100%}#mascots{display:flex;justify-content:center;align-items:end;height:65px;margin:0 -5px 12px}#mascots .block{width:28%;height:65px;transform:rotate(-9deg)}#mascots .block:nth-child(even){transform:rotate(9deg) translateY(-7px)}.overlay-card h2{font-size:clamp(18px,2.5vw,25px);line-height:1.5;color:#ae5481}.overlay-card p{font-size:12px;line-height:1.8;white-space:pre-line;margin:12px 0 18px;color:#8e7189}.primary{background:#e886a8;border-color:#c8658e;box-shadow:0 4px 0 #b05a82;color:#fff;width:100%;font-size:14px;padding:12px}.primary:hover:not(:disabled){background:#ed99b6}.primary span{float:right}#cancel-restart{margin-top:12px;width:100%;font-size:12px}
+/* 長押しの対象を大きくし、指で操作してもページが動かないようにします。 */
+.touch-controls{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px}.touch-controls button{font-size:24px;padding:5px 3px;touch-action:none;user-select:none;-webkit-user-select:none}.touch-controls small{display:block;font-size:10px;margin-top:1px}.touch-controls .drop{background:#f8dbe7}.touch-controls button.is-held{background:#ecc7ed;transform:translateY(2px);box-shadow:none}footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:#ab8b9c;font-size:9px;letter-spacing:.07em}footer button{font-size:11px;padding:5px 12px}
+@keyframes pop{35%{transform:scale(1.18,.83)}65%{transform:scale(.86,1.17);filter:brightness(1.2)}100%{transform:scale(.1);opacity:0}}
+/* 縦の短いPCでは説明の間隔を詰め、盤面と操作ボタンを一画面に収めます。 */
+@media(min-width:601px) and (max-height:800px){.sidebar{gap:7px}.sidebar section{padding:10px}.control-card p{margin-top:3px}#score{font-size:34px;margin-bottom:6px}#next{min-height:52px}#next .block{height:46px;width:46px}.music-note{font-size:10px}.rule-note{display:none}.overlay-card p{font-size:11px;margin:10px 0 14px}}
+/* スマートフォンでも四色の顔・次の組・音ボタンを残します。 */
+@media(max-width:600px){.game-shell{padding:12px 10px}header{align-items:flex-start;gap:4px;margin-bottom:12px}h1{font-size:23px}.eyebrow{font-size:8px;letter-spacing:.08em}.header-actions{flex-direction:column;gap:6px}.header-actions button{padding:5px 8px;font-size:10px}.play-layout{grid-template-columns:minmax(0,1fr) 92px;gap:9px}.sidebar section{padding:10px 6px;border-radius:14px}.sidebar h2{font-size:10px}.sidebar h2 span{display:block;margin:3px 0 0;font-size:10px}#score{font-size:28px}.score-bottom{flex-direction:column;gap:5px;font-size:10px}.score-bottom strong{font-size:15px}#next{gap:0;min-height:47px}#next .block{width:38px;height:38px}.control-card,.rule-note{display:none}.music-note{font-size:10px;padding:0 2px}.music-note span{font-size:9px}.board-top{font-size:10px}#phase-label{font-size:8px}.board-wrap{padding:4px;border-width:2px}#overlay{inset:4px;padding:9px}.overlay-card h2{font-size:20px}#mascots{height:55px}#mascots .block{height:55px}.touch-controls{gap:5px}.touch-controls button{border-radius:12px;font-size:22px}footer{font-size:7px}#announcement{font-size:11px}.overlay-card p{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.clearing .block{animation:none;opacity:.3}button{transition:none}}
+/* 高さの小さい埋め込み画面では盤面を縮め、タッチ操作を画面内に残します。 */
+@media(max-width:600px) and (max-height:700px){
+  .game-shell{padding:8px}
+  .play-layout{grid-template-columns:minmax(125px,calc((100dvh - 208px)/2)) minmax(76px,1fr);gap:8px}
+  h1{font-size:20px}.eyebrow{font-size:7px}h1 span{font-size:10px}header{margin-bottom:8px}
+  .overlay-card h2{font-size:16px}.overlay-card p{font-size:10px;line-height:1.5;margin:7px 0 10px}
+  #mascots{height:38px;margin-bottom:8px}#mascots .block{height:38px}
+  .primary{font-size:11px;padding:9px 5px}#cancel-restart{font-size:10px;padding:6px;margin-top:8px}
+  .music-note span{display:none}.music-note{font-size:9px}
+  .touch-controls button{font-size:19px;padding:3px}.touch-controls small{font-size:9px}
+  #announcement{font-size:10px;min-height:27px}.sidebar section{padding:8px 5px}footer{margin-top:9px}
+}
+
+/* 接続するセル間の実寸の隙間をなくし、格子は本体の背面だけに描きます。 */
+.cell{border:0;box-shadow:inset -1px -1px #ffffff6b}
+.cell:nth-child(-n+6){border:0}
+.active-block{filter:none}
+.block svg{overflow:hidden}
+
+/* 内容の有無で行高が変わると丸が縦長になるため、12段を均等に固定します。 */
+#board{grid-template-rows:repeat(12,minmax(0,1fr))}
+/* 小数ピクセルの境界に白い線が出ないよう、隣の接続面へわずかに重ねます。 */
+.cell .block{width:calc(100% + .6px);height:calc(100% + .6px)}
+
+/* 選曲を盤面と独立した幅で表示し、スマートフォンでも曲名を読めるようにします。 */
+.sound-settings{margin-top:14px;padding:12px;border:2px solid #e7ccde;border-radius:16px;background:#fffdf8dc;display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px 12px;align-items:center}
+.sound-settings label{font-size:12px;font-weight:700;color:#a05a83}
+.sound-settings select{width:100%;min-width:0;padding:8px;border:1px solid #d5bfd9;border-radius:9px;background:#fff;color:#665077;font:inherit;font-size:12px}
+.sound-settings select:focus-visible{outline:3px solid #8c60b5;outline-offset:2px}
+.sound-actions{grid-column:1/-1;display:flex;gap:8px}.sound-actions button{font-size:12px;padding:7px 12px}
+#voice-toggle[aria-pressed=true]{background:#f9e5f1}
+#sound-feedback{grid-column:1/-1;font-size:11px;line-height:1.5;color:#917a95}
+#current-track{font-size:inherit;color:inherit;display:inline}
+@media(max-width:600px){.sound-settings{padding:10px;gap:8px}.sound-settings label{font-size:11px}.sound-actions button{font-size:11px;padding:7px 9px}}

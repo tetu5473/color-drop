@@ -1,0 +1,27 @@
+<!-- color-drop/visual-check.html【新規作成】実ゲームと同じ描画関数で接続形状を目視検証するページです。 -->
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>接続形状の確認</title><link rel="stylesheet" href="styles.css?v=5">
+<style>main{padding:16px;max-width:720px;margin:auto}h1{font-size:22px;margin-bottom:16px}.examples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}figure{margin:0;background:#fffcf8;padding:10px;border-radius:15px}figcaption{font-size:12px;margin-bottom:8px}.sample{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));aspect-ratio:1;background:#ede7f9;border-radius:10px}.sample>div{min-height:0;min-width:0}</style>
+<main><h1>同色がくっつく丸い形</h1><div class="examples" id="examples"></div></main>
+<script type="module">
+// 孤立・同色接続・異色非接続を、同じセル寸法で比較します。
+import {characterMarkup,connectionsAt} from './characters.mjs?v=4';
+const examples = [
+ ['単独の丸い形',[[0,0,0],[0,1,0],[0,0,0]]],
+ ['横につながる',[[0,0,0],[1,1,1],[0,0,0]]],
+ ['縦につながる',[[0,2,0],[0,2,0],[0,2,0]]],
+ ['L字につながる',[[0,0,0],[3,0,0],[3,3,0]]],
+ ['十字につながる',[[0,4,0],[4,4,4],[0,4,0]]],
+ ['異色・斜めは離れる',[[1,2,0],[3,1,0],[0,0,0]]],
+];
+for(const [label,board] of examples){
+ const figure=document.createElement('figure');
+ const caption=document.createElement('figcaption');caption.textContent=label;
+ const sample=document.createElement('div');sample.className='sample';
+ for(let row=0;row<3;row+=1)for(let column=0;column<3;column+=1){
+   const cell=document.createElement('div');cell.className='cell';const color=board[row][column];
+   if(color)cell.innerHTML=characterMarkup(color,'',connectionsAt((column,row)=>board[row]?.[column],column,row,color));
+   sample.append(cell);
+ }
+ figure.append(caption,sample);document.querySelector('#examples').append(figure);
+}
+</script></html>

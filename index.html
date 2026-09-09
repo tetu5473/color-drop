@@ -1,0 +1,54 @@
+<!-- color-drop/index.html【修正】ローカルで遊べる独立した落ち物パズルの画面です。 -->
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff6e7">
+  <title>カラードロップ｜ぷにっと、つなげよう。</title>
+  <link rel="stylesheet" href="styles.css?v=6">
+  <script type="module" src="game.mjs?v=8"></script>
+</head>
+<body>
+  <main class="game-shell">
+    <!-- タイトルと操作案内だけを置き、すぐに盤面へ進める構成です。 -->
+    <header><div><p class="eyebrow">CANDY GARDEN · COLOR DROP</p><h1>カラードロップ<span>ぷにっと、つなげよう。</span></h1></div><div class="header-actions"><button id="sound" aria-pressed="true" aria-label="すべての音の切り替え">♫ 音 ON</button><button id="pause" disabled>Ⅱ 一時停止</button></div></header>
+    <div class="play-layout">
+      <!-- 四色それぞれに異なる顔と飾りを描き、色だけに頼らず見分けられるようにします。 -->
+      <section class="board-section" aria-label="ゲーム盤面">
+        <div class="board-top"><span>同じ色を <strong>4つ</strong> つなげる</span><span id="phase-label">READY</span></div>
+        <div class="board-wrap">
+          <div id="board" role="img" aria-label="6列12段のゲーム盤面"></div>
+          <div id="overlay"><div class="overlay-card"><div id="mascots" aria-hidden="true"></div><h2 id="overlay-title">4つで消える。<br>連鎖で伸びる。</h2><p id="overlay-description">丸い仲間を動かして、<br>同じ色を上下左右につなげよう。</p><button id="start" class="primary">プレイする <span>→</span></button><!-- リセット確認時だけ表示し、盤面を保ったまま戻れます。 --><button id="cancel-restart" hidden>キャンセル</button></div></div>
+        </div>
+        <p id="announcement" role="status" aria-live="polite">準備ができたら「プレイする」</p>
+      </section>
+      <!-- 得点と次の組を、プレイ中も見える場所へ配置します。 -->
+      <aside class="sidebar">
+        <section class="score-card"><h2>SCORE <span>得点</span></h2><p id="score">0</p><div class="score-bottom"><span>消した数 <strong id="cleared">0</strong></span><span>最大連鎖 <strong id="max-chain">0</strong></span></div></section>
+        <section class="next-card"><h2>NEXT <span>次のブロック</span></h2><div id="next" aria-label="次のブロックは開始後に表示"></div></section>
+        <section class="control-card"><h2>CONTROLS <span>操作</span></h2><p><kbd>←</kbd><kbd>→</kbd><span>左右に移動</span></p><p><kbd>↑</kbd><kbd>X</kbd><span>右回転</span></p><p><kbd>Z</kbd><span>左回転</span></p><p><kbd>↓</kbd><span>早く落とす</span></p><p><kbd>Space</kbd><span>一気に落とす</span></p><p><kbd>P</kbd><span>一時停止 / 再開</span></p></section>
+        <p class="music-note">♫ <span id="current-track">キャンディ・ステップ</span><br><span>下の「音楽・声」で選べます</span></p><p class="rule-note">斜めはつながりません。<br>消えた後は自動で落下。再び4つつながると連鎖します。出現位置がふさがるとゲームオーバー。</p>
+      </aside>
+    </div>
+    <!-- タッチ・マウスでも全操作ができるボタン群です。 -->
+    <nav class="touch-controls" aria-label="ゲーム操作ボタン">
+      <button data-action="left" aria-label="左へ移動">←<small>左へ</small></button>
+      <button data-action="right" aria-label="右へ移動">→<small>右へ</small></button>
+      <button data-action="rotate-left" aria-label="左回転">↶<small>左回転</small></button>
+      <button data-action="rotate-right" aria-label="右回転">↷<small>右回転</small></button>
+      <button data-action="down" aria-label="一段落とす">↓<small>落とす</small></button>
+      <button data-action="drop" class="drop" aria-label="一気に落とす">⤓<small>一気に</small></button>
+    </nav>
+    <!-- ゲーム操作の下で選曲・声・試聴をまとめ、盤面の横幅を狭めません。 -->
+    <section class="sound-settings" aria-label="音楽と声の設定">
+      <label for="music-track">♫ 音楽・声</label>
+      <select id="music-track" aria-label="BGMを選ぶ"></select>
+      <div class="sound-actions"><button id="voice-toggle" aria-pressed="true">声 ON</button><button id="sound-preview">消去音と声を試す</button></div>
+      <p id="sound-feedback" role="status">4曲から選べます。全体の消音は右上の「音 OFF」。</p>
+      <audio id="callout-audio" preload="auto" src="voices/pop.wav"></audio>
+    </section>
+    <footer>4 COLORS · 6 × 12 GRID · ENDLESS CHAINS <button id="restart" disabled>最初から</button></footer>
+  </main>
+</body>
+</html>
